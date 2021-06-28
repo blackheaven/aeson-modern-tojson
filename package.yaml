@@ -1,0 +1,58 @@
+name:                aeson-modern-tojson
+version:             0.1.0.0
+github:              "blackheaven/aeson-modern-tojson"
+license:             ISC
+author:              "Gautier DI FOLCO"
+maintainer:          "gautier.difolco@gmail.com"
+copyright:           "Gautier DI FOLCO"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+- LICENSE
+
+# Metadata used when publishing your package
+synopsis:            Provide a handy way to derving ToJSON proprely.
+category:            Text, Web, JSON
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description: |
+  Provide a newtype to be used with DerivingVia to correctly derive <https://hackage.haskell.org/package/aeson-1.5.6.0/docs/Data-Aeson.html#g:7 ToJSON>.
+
+  As simple as:
+
+
+  @
+  data W = W Int Int
+    deriving stock (Generic)
+    deriving (ToJSON) via (ModernToJSON W)
+  @
+
+dependencies:
+- base >= 4.7 && < 5
+- aeson >= 1.0.0.0 && < 2
+
+library:
+  source-dirs: src
+
+tests:
+  aeson-modern-tojson-test:
+    main:                Data/Aeson/ToJSON/DerivingSpec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -Wall
+    - -Wcompat
+    - -Widentities
+    - -Wincomplete-record-updates
+    - -Wincomplete-uni-patterns
+    - -Wpartial-fields
+    - -Wredundant-constraints
+    # - -Werror
+    dependencies:
+    - aeson-modern-tojson
+    - inspection-testing >= 0.4.4.0 && < 1.0

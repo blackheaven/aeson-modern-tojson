@@ -10,7 +10,7 @@ module Data.Aeson.ToJSON.DerivingSpec (main) where
 import Data.Aeson
 import Data.Aeson.ToJSON.Deriving
 import GHC.Generics
-import Test.Inspection (inspect, (===))
+import Test.Inspection (inspect, (==-))
 
 data W = W Int Int
   deriving stock (Generic)
@@ -25,4 +25,4 @@ toEncodingTarget = genericToEncoding defaultOptions
 main :: IO ()
 main = pure ()
 
-inspect $ 'toEncodingDerived === 'toEncodingTarget
+inspect $ 'toEncodingDerived ==- 'toEncodingTarget

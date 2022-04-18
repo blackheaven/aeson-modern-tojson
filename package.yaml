@@ -1,5 +1,5 @@
 name:                aeson-modern-tojson
-version:             0.1.0.0
+version:             0.1.1.0
 github:              "blackheaven/aeson-modern-tojson"
 license:             ISC
 author:              "Gautier DI FOLCO"
@@ -12,7 +12,7 @@ extra-source-files:
 - LICENSE
 
 # Metadata used when publishing your package
-synopsis:            Provide a handy way to derving ToJSON proprely.
+synopsis:            Provide a handy way for derving ToJSON proprely.
 category:            Text, Web, JSON
 
 # To avoid duplicated efforts in documentation and dealing with the
@@ -32,7 +32,7 @@ description: |
 
 dependencies:
 - base >= 4.7 && < 5
-- aeson >= 1.0.0.0 && < 2
+- aeson >= 1.0.0.0 && < 3
 
 library:
   source-dirs: src

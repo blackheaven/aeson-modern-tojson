@@ -14,15 +14,26 @@ import Test.Inspection (inspect, (==-))
 
 data W = W Int Int
   deriving stock (Generic)
-  deriving (ToJSON) via (ModernToJSON W)
+  deriving (ToJSON) via (GenericallyToJSONToEncoding W)
 
-toEncodingDerived :: W -> Encoding
-toEncodingDerived = toEncoding
+data X = X Int Int
+  deriving stock (Generic)
+  deriving (ToJSON) via (GenericallyToEncoding X)
 
-toEncodingTarget :: W -> Encoding
-toEncodingTarget = genericToEncoding defaultOptions
+toEncodingDerivedBoth :: W -> Encoding
+toEncodingDerivedBoth = toEncoding
+
+toEncodingTargetBoth :: W -> Encoding
+toEncodingTargetBoth = genericToEncoding defaultOptions
+
+toEncodingDerivedOnly :: X -> Encoding
+toEncodingDerivedOnly = toEncoding
+
+toEncodingTargetOnly :: X -> Encoding
+toEncodingTargetOnly = genericToEncoding defaultOptions
 
 main :: IO ()
 main = pure ()
 
-inspect $ 'toEncodingDerived ==- 'toEncodingTarget
+inspect $ 'toEncodingDerivedBoth ==- 'toEncodingTargetBoth
+inspect $ 'toEncodingDerivedOnly ==- 'toEncodingTargetOnly
